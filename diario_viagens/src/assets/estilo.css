@@ -1,0 +1,63 @@
+/* Tokens de design: mude aqui e o app inteiro acompanha */
+:root {
+    --cor-fundo: #faf8f4;
+    --cor-superficie: #ffffff;
+    --cor-texto: #1f1d1a;
+    --cor-texto-suave: #6b665d;
+    --cor-borda: #e8e3d9;
+    --cor-acento: #b8552f;
+    --cor-acento-escuro: #8f4023;
+    --cor-acento-suave: #f4e9e2;
+
+    --fonte-titulo: 'Fraunces', Georgia, serif;
+    --fonte-texto: 'Inter', system-ui, sans-serif;
+
+    --raio: 14px;
+    --sombra: 0 1px 2px rgba(31, 29, 26, .04), 0 10px 30px rgba(31, 29, 26, .06);
+    --transicao: .2s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fonte-texto);
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+    line-height: 1.15;
+}
+
+a {
+    color: var(--cor-acento);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--cor-acento-escuro);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* helpers reutilizáveis em qualquer página */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.titulo-pagina {
+    font-size: 2rem;
+    margin: 0 0 1.5rem;
+}
