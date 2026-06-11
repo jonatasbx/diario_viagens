@@ -8,11 +8,18 @@ defineProps({
   resumo: { type: String, default: '' },
   tags: { type: Array, default: () => [] },
 })
-const emit = defineEmits(['abrir'])
+// três eventos genéricos; o pai decide o significado de cada um
+const emit = defineEmits(['abrir', 'editar', 'excluir'])
 </script>
 
 <template>
   <article class="card">
+    <div class="card__acoes">
+      <!-- cada botão só emite seu evento; o Card não faz nada sozinho -->
+      <button class="card__acao" @click="emit('editar')" aria-label="Editar destino">✎</button>
+      <button class="card__acao" @click="emit('excluir')" aria-label="Excluir destino">X</button>
+    </div>
+
     <img v-if="imagem" :src="imagem" :alt="titulo" class="card__img" />
     <div class="card__corpo">
       <h2 class="card__titulo">{{ titulo }}</h2>
@@ -27,6 +34,7 @@ const emit = defineEmits(['abrir'])
 
 <style scoped>
 .card {
+  position: relative;
   background: var(--cor-superficie);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio);
@@ -35,6 +43,15 @@ const emit = defineEmits(['abrir'])
   transition: transform var(--transicao), box-shadow var(--transicao);
 }
 .card:hover { transform: translateY(-4px); box-shadow: var(--sombra); }
+.card__acoes { position: absolute; top: .6rem; right: .6rem; z-index: 1; display: flex; gap: .4rem; }
+.card__acao {
+  width: 30px; height: 30px; border: none; border-radius: 50%;
+  background: rgba(255,255,255,.9); color: var(--cor-acento-escuro);
+  font-size: 1.1rem; line-height: 1; cursor: pointer;
+  display: grid; place-items: center;
+  transition: background var(--transicao), color var(--transicao);
+}
+.card__acao:hover { background: var(--cor-acento); color: #fff; }
 .card__img { width: 100%; height: 180px; object-fit: cover; }
 .card__corpo { padding: 1.25rem; display: flex; flex-direction: column; gap: .6rem; }
 .card__titulo { margin: 0; font-size: 1.3rem; }

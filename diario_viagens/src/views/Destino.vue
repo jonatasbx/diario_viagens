@@ -1,11 +1,12 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { destinos } from '../data/destinos.js'
+import { useDestinos } from '../composables/useDestinos.js'
 import Tag from '../components/Tag.vue'
 
 const route = useRoute()
-const destino = computed(() => destinos.find((d) => d.id === Number(route.params.id)))
+const {destinos} = useDestinos()
+const destino = computed(() => destinos.value.find((d) => d.id === Number(route.params.id)))
 </script>
 
 <template>
